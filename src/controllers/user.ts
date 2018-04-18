@@ -8,7 +8,7 @@ import { BaseController } from './base';
  */
 export class UserController extends BaseController {
   /**
-   * Create the routes.
+   * Create routes.
    *
    * @override
    */

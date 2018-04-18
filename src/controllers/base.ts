@@ -20,7 +20,7 @@ export abstract class BaseController {
   }
 
   /**
-   * Create the routes.
+   * Create routes.
    *
    */
   public abstract create(): Router;
