@@ -34,16 +34,16 @@ export class App {
    */
   constructor() {
     this.app = express();
-    this.config();
-    this.routes();
-    this.api();
+    this.setConfig();
+    this.setRoutes();
+    this.setApiRoutes();
   }
 
   /**
    * Configure application
    *
    */
-  private config(): void {
+  private setConfig(): void {
     this.app.set('views', path.join(__dirname, 'views'));
     this.app.set('view engine', 'jade');
 
@@ -59,7 +59,7 @@ export class App {
    * Create and return Router.
    *
    */
-  private routes(): void {
+  private setRoutes(): void {
     // Custom routes
     this.app.use('/', new IndexController().create());
     this.app.use('/users', new UserController().create());
@@ -85,6 +85,6 @@ export class App {
    * Create REST API routes
    *
    */
-  private api(): void {
+  private setApiRoutes(): void {
   }
 }
