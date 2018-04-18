@@ -1,7 +1,11 @@
-# Build application image and run it on docker
+## Build application image and run it on docker
 
 docker-compose up -d
 
-# URL
+## URL
 
 http://localhost:3000
+
+## License
+
+MIT
