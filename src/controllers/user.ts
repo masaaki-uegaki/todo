@@ -50,9 +50,44 @@ export class UserController extends BaseController {
    * @param router {Router} Express Router object.
    */
   private show(router: Router): void {
-    router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
+    router.get('/:uid', (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.send(`User:${req.params.id} | TODO`);
+        const user: app.UserModel = req.params;
+        res.send(`User:${user.uid} | TODO`);
+        next();
+      } catch (err) {
+        next(err);
+      }
+    });
+  }
+
+  /**
+   * Update specified user.
+   *
+   * @param router {Router} Express Router object.
+   */
+  private updade(router: Router): void {
+    router.put('/:uid', (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const user: app.UserModel = req.params;
+        res.send(`[UPDATED] User:${user.uid} | TODO`);
+        next();
+      } catch (err) {
+        next(err);
+      }
+    });
+  }
+
+  /**
+   * Delete specified user.
+   *
+   * @param router {Router} Express Router object.
+   */
+  private destroy(router: Router): void {
+    router.delete('/:uid', (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const user: app.UserModel = req.params;
+        res.send(`[DELETED] User:${user.uid} | TODO`);
         next();
       } catch (err) {
         next(err);
