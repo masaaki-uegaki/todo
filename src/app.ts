@@ -37,6 +37,7 @@ export class App {
     this.setConfig();
     this.setRoutes();
     this.setApiRoutes();
+    this.setErrorHandler();
   }
 
   /**
@@ -63,7 +64,20 @@ export class App {
     // Custom routes
     this.app.use('/', new IndexController().create());
     this.app.use('/users', new UserController().create());
+  }
 
+  /**
+   * Create REST API routes
+   *
+   */
+  private setApiRoutes(): void {
+  }
+
+  /**
+   * Create Error handler
+   *
+   */
+  private setErrorHandler(): void {
     // Catch 404 and forward to error handler
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       next(createError(404));
@@ -79,12 +93,5 @@ export class App {
       res.status(err.status || 500);
       res.render('error');
     });
-  }
-
-  /**
-   * Create REST API routes
-   *
-   */
-  private setApiRoutes(): void {
   }
 }
