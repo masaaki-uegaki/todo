@@ -18,7 +18,7 @@ services:
     volumes:
       - ".:/src"
     working_dir: /src
-    command: [sh, -c, npm install && npm start]
+    command: [sh, -c, npm install && npm build && npm start]
     ports:
       - "3000:3000"
 #    links:
