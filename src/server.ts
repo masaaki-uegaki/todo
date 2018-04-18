@@ -70,7 +70,7 @@ export class Server {
     });
 
     // Error handler
-    this.app.use((err: global.Error, req: Request, res: Response, next: NextFunction) => {
+    this.app.use((err: app.Error, req: Request, res: Response, next: NextFunction) => {
       // Set locals, only providing error in development
       res.locals.message = err.message;
       res.locals.error = req.app.get('env') === 'development' ? err : {};
