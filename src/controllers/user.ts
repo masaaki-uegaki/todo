@@ -16,6 +16,8 @@ export class UserController extends BaseController {
     const router = Router();
     this.index(router);
     this.show(router);
+    this.update(router);
+    this.destroy(router);
     return router;
   }
 
@@ -66,7 +68,7 @@ export class UserController extends BaseController {
    *
    * @param router {Router} Express Router object.
    */
-  private updade(router: Router): void {
+  private update(router: Router): void {
     router.put('/:uid', (req: Request, res: Response, next: NextFunction) => {
       try {
         const user: app.model.User = req.params;
