@@ -15,6 +15,7 @@ export class UserController extends BaseController {
   public create(): Router {
     const router = Router();
     this.index(router);
+    this.show(router);
     return router;
   }
 
@@ -28,15 +29,26 @@ export class UserController extends BaseController {
   }
 
   /**
-   * The user route.
+   * Show all users.
    *
-   * @param req {Request} The express Request object.
-   * @param res {Response} The express Response object.
-   * @param next {NextFunction} Execute the next method.
+   * @param router {Router} Express Router object.
    */
   public index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       res.send(`User | TODO`);
+      next();
+    });
+  }
+
+  /**
+   * Show specified user.
+   *
+   * @param router {Router} Express Router object.
+   */
+  public show(router: Router): void {
+    router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
+      res.send(`User:${req.params.id} | TODO`);
+      next();
     });
   }
 }

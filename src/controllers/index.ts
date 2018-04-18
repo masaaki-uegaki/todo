@@ -29,16 +29,15 @@ export class IndexController extends BaseController {
   }
 
   /**
-   * The home page route.
+   * Show home.
    *
-   * @param req {Request} The express Request object.
-   * @param res {Response} The express Response object.
-   * @param next {NextFunction} Execute the next method.
+   * @param router {Router} The express Router object.
    */
   public index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       this.title = `Home | TODO`;
       this.render(req, res, 'index');
+      next();
     });
   }
 }

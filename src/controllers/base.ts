@@ -29,7 +29,6 @@ export abstract class BaseController {
    * Add a JS external file to the request.
    *
    * @param src {string} The src to the external JS file.
-   * @return {BaseRoute} Self for chaining
    */
   public addScript(src: string): BaseController {
     this.scripts.push(src);
@@ -37,7 +36,7 @@ export abstract class BaseController {
   }
 
   /**
-   * Render a page.
+   * Render page.
    *
    * @param req {Request} The request object.
    * @param res {Response} The response object.
