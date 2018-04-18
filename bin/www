@@ -2,13 +2,13 @@
 "use strict";
 
 //module dependencies
-const server = require("../dist/server");
+const application = require("../dist/app");
 const debug = require("debug")("todo:server");
 const http = require("http");
 
 //create http server
 const httpPort = normalizePort(process.env.PORT || 3000);
-const app = server.Server.bootstrap().app;
+const app = application.App.bootstrap().app;
 app.set("port", httpPort);
 const httpServer = http.createServer(app);
 

@@ -10,11 +10,11 @@ import { IndexController } from './controllers/index';
 import { UserController } from './controllers/user';
 
 /**
- * The server.
+ * Application.
  *
- * @class Server
+ * @class App
  */
-export class Server {
+export class App {
   public app: express.Application;
 
   /**
@@ -23,8 +23,8 @@ export class Server {
    * @static
    * @return {ng.auto.IInjectorService} Returns the newly created injector for this app.
    */
-  public static bootstrap(): Server {
-    return new Server();
+  public static bootstrap(): App {
+    return new App();
   }
 
   /**
