@@ -43,7 +43,7 @@ export class App {
    * Configure application
    *
    */
-  public config(): void {
+  private config(): void {
     this.app.set('views', path.join(__dirname, 'views'));
     this.app.set('view engine', 'jade');
 
@@ -85,6 +85,6 @@ export class App {
    * Create REST API routes
    *
    */
-  public api(): void {
+  private api(): void {
   }
 }
