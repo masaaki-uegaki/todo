@@ -33,7 +33,7 @@ export class UserController extends BaseController {
    *
    * @param router {Router} Express Router object.
    */
-  public index(router: Router): void {
+  private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       res.send(`User | TODO`);
       next();
@@ -45,7 +45,7 @@ export class UserController extends BaseController {
    *
    * @param router {Router} Express Router object.
    */
-  public show(router: Router): void {
+  private show(router: Router): void {
     router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
       res.send(`User:${req.params.id} | TODO`);
       next();

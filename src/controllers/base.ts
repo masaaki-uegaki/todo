@@ -30,7 +30,7 @@ export abstract class BaseController {
    *
    * @param src {string} The src to the external JS file.
    */
-  public addScript(src: string): BaseController {
+  protected addScript(src: string): BaseController {
     this.scripts.push(src);
     return this;
   }
@@ -43,7 +43,7 @@ export abstract class BaseController {
    * @param view {String} The view to render.
    * @param options {Object} Additional options to append to the view's local scope.
    */
-  public render(req: Request, res: Response, view: string, options?: Object): void {
+  protected render(req: Request, res: Response, view: string, options?: Object): void {
     res.locals.BASE_URL = '/';
     res.locals.scripts = this.scripts;
     res.locals.title = this.title;

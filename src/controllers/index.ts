@@ -33,7 +33,7 @@ export class IndexController extends BaseController {
    *
    * @param router {Router} The express Router object.
    */
-  public index(router: Router): void {
+  private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       this.title = `Home | TODO`;
       this.render(req, res, 'index');
