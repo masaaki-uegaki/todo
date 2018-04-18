@@ -35,8 +35,12 @@ export class UserController extends BaseController {
    */
   private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
-      res.send(`User | TODO`);
-      next();
+      try {
+        res.send(`User | TODO`);
+        next();
+      } catch (err) {
+        next(err);
+      }
     });
   }
 
@@ -47,8 +51,12 @@ export class UserController extends BaseController {
    */
   private show(router: Router): void {
     router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
-      res.send(`User:${req.params.id} | TODO`);
-      next();
+      try {
+        res.send(`User:${req.params.id} | TODO`);
+        next();
+      } catch (err) {
+        next(err);
+      }
     });
   }
 }

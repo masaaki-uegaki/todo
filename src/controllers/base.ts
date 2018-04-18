@@ -38,9 +38,9 @@ export abstract class BaseController {
   /**
    * Render page.
    *
-   * @param req {Request} The request object.
-   * @param res {Response} The response object.
-   * @param view {String} The view to render.
+   * @param req {Request} Request object.
+   * @param res {Response} Response object.
+   * @param view {String} View to render.
    * @param options {Object} Additional options to append to the view's local scope.
    */
   protected render(req: Request, res: Response, view: string, options?: Object): void {

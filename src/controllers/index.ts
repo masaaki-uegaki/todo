@@ -35,9 +35,13 @@ export class IndexController extends BaseController {
    */
   private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
-      this.title = `Home | TODO`;
-      this.render(req, res, 'index');
-      next();
+      try {
+        this.title = `Home | TODO`;
+        this.render(req, res, 'index');
+        next();
+      } catch (err) {
+        next(err);
+      }
     });
   }
 }
