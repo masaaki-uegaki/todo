@@ -23,7 +23,7 @@ export abstract class BaseController {
    * Create the routes.
    *
    */
-  public abstract create(router: Router);
+  public abstract create(): Router;
 
   /**
    * Add a JS external file to the request.
