@@ -1,4 +1,4 @@
-# Build application image and run on docker
+# Build application image and run it on docker
 
 docker-compose up -d
 
