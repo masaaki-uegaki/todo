@@ -5,17 +5,17 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "debug": "nodemon --inspect ./bin/www",
-    "build": "npm run build-ts && npm run copy-static-assets",
+    "build": "yarn run build-ts && yarn run copy-static-assets",
     "build-ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "copy-static-assets": "ts-node copyStaticAssets.ts"
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
-    "debug": "~2.6.9",
+    "debug": "^3.1.0",
     "express": "^4.16.3",
     "http-errors": "^1.6.3",
-    "jade": "~1.11.0",
+    "jade": "^1.11.0",
     "morgan": "^1.9.0",
     "path": "^0.12.7"
   },
