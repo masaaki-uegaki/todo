@@ -32,6 +32,7 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "@types/aws-serverless-express": "^3.0.1",
     "@types/cookie-parser": "^1.4.1",
     "@types/moment": "^2.13.0",
     "@types/morgan": "^1.7.35",
