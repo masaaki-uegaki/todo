@@ -9,6 +9,7 @@ import * as awsServerlessExpressMiddleware from 'aws-serverless-express/middlewa
 
 import { IndexController } from './controllers/index';
 import { UserController } from './controllers/user';
+import { TaskController } from './controllers/task';
 
 /**
  * Application.
@@ -66,6 +67,7 @@ export class App {
   private setRoutes(): void {
     this.app.use('/', new IndexController().create());
     this.app.use('/users', new UserController().create());
+    this.app.use('/tasks', new TaskController().create());
   }
 
   /**

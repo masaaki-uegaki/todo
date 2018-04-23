@@ -2,11 +2,11 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { BaseController } from './base';
 
 /**
- * User controller
+ * Task controller
  *
- * @class UserController
+ * @class TaskController
  */
-export class UserController extends BaseController {
+export class TaskController extends BaseController {
   /**
    * Create routes.
    *
@@ -31,14 +31,14 @@ export class UserController extends BaseController {
   }
 
   /**
-   * Show all users.
+   * Show all tasks.
    *
    * @param router {Router} Express Router object.
    */
   private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.send(`Users | TODO`);
+        res.send(`Tasks | TODO`);
         next();
       } catch (err) {
         next(err);
@@ -47,15 +47,15 @@ export class UserController extends BaseController {
   }
 
   /**
-   * Show specified user.
+   * Show specified task.
    *
    * @param router {Router} Express Router object.
    */
   private show(router: Router): void {
-    router.get('/:uid', (req: Request, res: Response, next: NextFunction) => {
+    router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
       try {
-        const user: app.model.User = req.params;
-        res.send(`User:${user.uid} | TODO`);
+        const task: todo.model.Task = req.params;
+        res.send(`Task:${task.id} | TODO`);
         next();
       } catch (err) {
         next(err);
@@ -64,15 +64,15 @@ export class UserController extends BaseController {
   }
 
   /**
-   * Update specified user.
+   * Update specified task.
    *
    * @param router {Router} Express Router object.
    */
   private update(router: Router): void {
-    router.put('/:uid', (req: Request, res: Response, next: NextFunction) => {
+    router.put('/:id', (req: Request, res: Response, next: NextFunction) => {
       try {
-        const user: app.model.User = req.params;
-        res.send(`[UPDATED] User:${user.uid} | TODO`);
+        const task: todo.model.Task = req.params;
+        res.send(`[UPDATED] Task:${task.id} | TODO`);
         next();
       } catch (err) {
         next(err);
@@ -81,15 +81,15 @@ export class UserController extends BaseController {
   }
 
   /**
-   * Delete specified user.
+   * Delete specified task.
    *
    * @param router {Router} Express Router object.
    */
   private destroy(router: Router): void {
-    router.delete('/:uid', (req: Request, res: Response, next: NextFunction) => {
+    router.delete('/:id', (req: Request, res: Response, next: NextFunction) => {
       try {
-        const user: app.model.User = req.params;
-        res.send(`[DELETED] User:${user.uid} | TODO`);
+        const task: todo.model.Task = req.params;
+        res.send(`[DELETED] Task:${task.id} | TODO`);
         next();
       } catch (err) {
         next(err);

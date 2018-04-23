@@ -2,6 +2,7 @@
   "dependencies": {
     "debug": "registry:npm/debug#2.0.0+20170504163145",
     "express": "registry:npm/express#4.14.0+20170217205433",
-    "http-errors": "registry:npm/http-errors#1.4.0+20160723033700"
+    "http-errors": "registry:npm/http-errors#1.4.0+20160723033700",
+    "mongoose": "registry:npm/mongoose#4.3.5+20160628072220"
   }
 }
