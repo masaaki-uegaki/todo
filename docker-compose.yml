@@ -19,13 +19,13 @@ services:
       - ".:/src"
     working_dir: /src
     command: > 
-      sh -c \
-      yarn global add typings \
-      && yarn add typescript tslint ts-node@^5.0.1 nodemon shelljs @types/cookie-parser @types/morgan @types/shelljs @types/moment --dev \
-      && yarn add jade debug http-errors express cookie-parser morgan path \
-      && typings i debug express http-errors \
-      && yarn build \
-      && yarn start 
+      sh -c
+      "yarn global add typings
+      && yarn add typescript tslint ts-node@^5.0.1 nodemon shelljs @types/cookie-parser @types/morgan @types/shelljs @types/moment --dev
+      && yarn add jade debug http-errors express cookie-parser morgan path
+      && typings i debug express http-errors
+      && yarn build
+      && yarn start"
     ports:
       - "3000:3000"
 #    links:

@@ -46,7 +46,7 @@ Resources:
     Type: AWS::Serverless::Api
   AwsServerlessExpressFunction:
     Properties:
-      CodeUri: s3://todo-bucket9/b5c5735ecb95644d2fc6da6efbe50251
+      CodeUri: s3://todo-bucket9/698844bed7f21c58e2e9d4e03a4b8d72
       Events:
         ProxyApiGreedy:
           Properties:

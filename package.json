@@ -5,28 +5,28 @@
   "config": {
     "s3BucketName": "todo-bucket9",
     "region": "ap-northeast-1",
-    "cloudFormationStackName": "AwsServerlessExpressStack",
+    "cloudFormationStackName": "TodoServerlessExpressStack",
     "functionName": "todo",
     "accountId": "204217228502"
   },
   "scripts": {
     "start": "nodemon ./bin/www",
     "debug": "nodemon --inspect ./bin/www",
-    "build": "yarn build-ts && yarn copy-static-assets",
+    "build": "yarn run build-ts && yarn run copy-static-assets",
     "build-ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
     "config": "node ./scripts/configure.js",
     "deconfig": "node ./scripts/deconfigure.js",
     "local": "node scripts/local",
-    "invoke-lambda": "aws lambda invoke --function-name todo --region ap-northeast-1 --payload file://api-gateway-event.json lambda-invoke-response.json && cat lambda-invoke-response.json",
-    "create-bucket": "aws s3 mb s3://todo-bucket9 --region ap-northeast-1",
-    "delete-bucket": "aws s3 rb s3://todo-bucket9 --region ap-northeast-1",
-    "package": "aws cloudformation package --template ./cloudformation.yaml --s3-bucket todo-bucket9 --output-template packaged-sam.yaml --region ap-northeast-1",
-    "deploy": "aws cloudformation deploy --template-file packaged-sam.yaml --stack-name todo --capabilities CAPABILITY_IAM --region ap-northeast-1",
-    "package-deploy": "yarn package && yarn deploy",
-    "delete-stack": "aws cloudformation delete-stack --stack-name todo --region ap-northeast-1",
-    "setup": "npm install && (aws s3api get-bucket-location --bucket todo-bucket9 --region ap-northeast-1 || yarn create-bucket) && yarn package-deploy"
+    "invoke-lambda": "aws lambda invoke --function-name $npm_package_config_functionName --region $npm_package_config_region --payload file://api-gateway-event.json lambda-invoke-response.json && cat lambda-invoke-response.json",
+    "create-bucket": "aws s3 mb s3://$npm_package_config_s3BucketName --region $npm_package_config_region",
+    "delete-bucket": "aws s3 rb s3://$npm_package_config_s3BucketName --region $npm_package_config_region",
+    "package": "aws cloudformation package --template ./cloudformation.yaml --s3-bucket $npm_package_config_s3BucketName --output-template packaged-sam.yaml --region $npm_package_config_region",
+    "deploy": "aws cloudformation deploy --template-file packaged-sam.yaml --stack-name $npm_package_config_cloudFormationStackName --capabilities CAPABILITY_IAM --region $npm_package_config_region",
+    "package-deploy": "npm run package && npm run deploy",
+    "delete-stack": "aws cloudformation delete-stack --stack-name $npm_package_config_cloudFormationStackName --region $npm_package_config_region",
+    "setup": "npm install && (aws s3api get-bucket-location --bucket $npm_package_config_s3BucketName --region $npm_package_config_region || npm run create-bucket) && npm run package-deploy"
   },
   "dependencies": {
     "aws-serverless-express": "^3.2.0",
