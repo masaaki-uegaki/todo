@@ -14,12 +14,12 @@ const server = lambdaFunction.handler(apiGatewayEvent, {
 process.stdin.resume()
 
 function exitHandler(options, err) {
-    if (options.cleanup && server && server.close ) {
-      server.close()
-    }
+  if (options.cleanup && server && server.close) {
+    server.close()
+  }
 
-    if (err) console.error(err.stack)
-    if (options.exit) process.exit()
+  if (err) console.error(err.stack)
+  if (options.exit) process.exit()
 }
 
 process.on('exit', exitHandler.bind(null, { cleanup: true }))

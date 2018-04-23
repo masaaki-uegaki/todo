@@ -5,6 +5,7 @@ import * as express from 'express';
 import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
+import * as awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
 
 import { IndexController } from './controllers/index';
 import { UserController } from './controllers/user';
@@ -45,6 +46,8 @@ export class App {
    *
    */
   private setConfig(): void {
+    this.app.use(awsServerlessExpressMiddleware.eventContext());
+
     this.app.set('views', path.join(__dirname, 'views'));
     this.app.set('view engine', 'jade');
 
@@ -61,7 +64,6 @@ export class App {
    *
    */
   private setRoutes(): void {
-    // Custom routes
     this.app.use('/', new IndexController().create());
     this.app.use('/users', new UserController().create());
   }
