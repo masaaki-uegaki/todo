@@ -4,4 +4,4 @@ docker-compose up -d
 
 ## URL
 
-http://localhost:3000
+http://localhost or http://localhost:3000
