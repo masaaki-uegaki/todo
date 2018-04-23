@@ -12,7 +12,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "debug": "nodemon --inspect ./bin/www",
-    "build": "yarn run build-ts && yarn run copy-static-assets",
+    "build": "yarn build-ts && yarn copy-static-assets",
     "build-ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
@@ -24,9 +24,9 @@
     "delete-bucket": "aws s3 rb s3://todo-bucket9 --region ap-northeast-1",
     "package": "aws cloudformation package --template ./cloudformation.yaml --s3-bucket todo-bucket9 --output-template packaged-sam.yaml --region ap-northeast-1",
     "deploy": "aws cloudformation deploy --template-file packaged-sam.yaml --stack-name todo --capabilities CAPABILITY_IAM --region ap-northeast-1",
-    "package-deploy": "npm run package && npm run deploy",
+    "package-deploy": "yarn package && yarn deploy",
     "delete-stack": "aws cloudformation delete-stack --stack-name todo --region ap-northeast-1",
-    "setup": "npm install && (aws s3api get-bucket-location --bucket todo-bucket9 --region ap-northeast-1 || npm run create-bucket) && npm run package-deploy"
+    "setup": "npm install && (aws s3api get-bucket-location --bucket todo-bucket9 --region ap-northeast-1 || yarn create-bucket) && yarn package-deploy"
   },
   "dependencies": {
     "aws-serverless-express": "^3.2.0",
