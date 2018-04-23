@@ -38,7 +38,7 @@ Outputs:
 Resources:
   ApiGatewayApi:
     Properties:
-      DefinitionUri: s3://todo-bucket9/be8fd9a962982d02dd4098195e56023a
+      DefinitionUri: s3://todo-bucket9/6e3f89c094cd18af558cb656a4fdc580
       StageName: prod
       Variables:
         ServerlessExpressLambdaFunctionName:
@@ -46,7 +46,7 @@ Resources:
     Type: AWS::Serverless::Api
   AwsServerlessExpressFunction:
     Properties:
-      CodeUri: s3://todo-bucket9/f7bd97e6d8c990357a3ef4788b4c7b5d
+      CodeUri: s3://todo-bucket9/b5c5735ecb95644d2fc6da6efbe50251
       Events:
         ProxyApiGreedy:
           Properties:
