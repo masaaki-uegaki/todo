@@ -21,9 +21,8 @@ services:
     command: > 
       sh -c
       "yarn global add typings
-      && yarn add typescript tslint ts-node@^5.0.1 nodemon shelljs @types/cookie-parser @types/morgan @types/shelljs @types/moment --dev
-      && yarn add jade debug http-errors express cookie-parser morgan path
-      && typings i debug express http-errors
+      && yarn install
+      && typings i
       && yarn build
       && yarn start"
     ports:
