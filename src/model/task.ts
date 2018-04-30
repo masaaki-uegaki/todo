@@ -31,5 +31,6 @@ export class Task extends Model {
     this.taskSchema.pre('save', (next: HookNextFunction) => {
       next();
     });
+
   }
 }
