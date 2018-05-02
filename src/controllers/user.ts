@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { BaseController } from './base';
+import { BaseController } from '@/controllers/base';
 
 /**
  * User controller
