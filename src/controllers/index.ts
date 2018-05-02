@@ -9,11 +9,11 @@ import { BaseController } from './base';
 export class IndexController extends BaseController {
 
   /**
-   * Create routes.
+   * Register routes.
    *
    * @override
    */
-  public create(): Router {
+  public register(): Router {
     const router = Router();
     this.index(router);
     return router;
@@ -36,8 +36,11 @@ export class IndexController extends BaseController {
   private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       try {
+        const data: Object = {};
         this.title = `Home | TODO`;
-        this.render(req, res, 'index');
+        this.csrfToken = req.csrfToken();
+        console.log(this.csrfToken);
+        this.render(req, res, 'index', data);
         next();
       } catch (err) {
         next(err);

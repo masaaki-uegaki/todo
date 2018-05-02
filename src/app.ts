@@ -2,9 +2,12 @@ import { Router, NextFunction, Request, Response } from 'express';
 
 import * as createError from 'http-errors';
 import * as express from 'express';
+import * as session from 'express-session';
 import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
+import * as csrf from 'csurf';
+import * as cors from 'cors';
 import * as awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
 
 import { IndexController } from './controllers/index';
@@ -36,9 +39,14 @@ export class App {
    */
   constructor() {
     this.app = express();
+
     this.setConfig();
-    this.setRoutes();
+
+    this.preRoutes();
     this.setApiRoutes();
+    this.setRoutes();
+    this.postRoutes();
+
     this.setErrorHandler();
   }
 
@@ -56,18 +64,65 @@ export class App {
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
+
     this.app.use(cookieParser());
-    this.app.use(express.static(path.join(__dirname, 'public')));
+    this.app.use(session({
+      secret: 'todo1A2B3C$!',
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        maxAge: 60 * 60 * 1000
+      }
+    }));
+
+    this.app.use(express.static(path.join(__dirname, '../public')));
   }
 
   /**
-   * Create and return Router.
+   * Pre process of routing.
+   *
+   */
+  private preRoutes(): void {
+    this.app.all('/*', (req: Request, res: Response, next: NextFunction) => {
+      try {
+        console.log(`Pre:url=${req.url}&sessionID=${req.sessionID}&params=${JSON.stringify(req.params)}`);
+        next();
+      } catch (err) {
+        next(err);
+      }
+    });
+  }
+
+  /**
+   * Post process of routing.
+   *
+   */
+  private postRoutes(): void {
+    this.app.all('/*', (req: Request, res: Response, next: NextFunction) => {
+      try {
+        console.log(`Post:url=${req.url}&sessionID=${req.sessionID}&params=${JSON.stringify(req.params)}`);
+      } catch (err) {
+        next(err);
+      }
+    });
+  }
+
+  /**
+   * Set routes.
    *
    */
   private setRoutes(): void {
-    this.app.use('/', new IndexController().create());
-    this.app.use('/users', new UserController().create());
-    this.app.use('/tasks', new TaskController().create());
+    this.app.use(csrf({ cookie: true }));
+
+    this.app.use('/', new IndexController().register());
+    this.app.use('/home', (req: Request, res: Response, next: NextFunction) => {
+      try {
+        res.redirect('/');
+        next();
+      } catch (err) {
+        next(err);
+      }
+    });
   }
 
   /**
@@ -75,6 +130,10 @@ export class App {
    *
    */
   private setApiRoutes(): void {
+    this.app.use(cors());
+
+    this.app.use('/api/users', new UserController().register());
+    this.app.use('/api/tasks', new TaskController().register());
   }
 
   /**

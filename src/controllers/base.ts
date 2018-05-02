@@ -7,6 +7,7 @@ import { Router, NextFunction, Request, Response } from 'express';
  */
 export abstract class BaseController {
   protected title: string;
+  protected csrfToken: string;
   private scripts: string[];
 
   /**
@@ -20,10 +21,10 @@ export abstract class BaseController {
   }
 
   /**
-   * Create routes.
+   * Register routes.
    *
    */
-  public abstract create(): Router;
+  public abstract register(): Router;
 
   /**
    * Add a JS external file to the request.
@@ -47,6 +48,7 @@ export abstract class BaseController {
     res.locals.BASE_URL = '/';
     res.locals.scripts = this.scripts;
     res.locals.title = this.title;
+    res.locals.csrfToken = this.csrfToken;
     res.render(view, options);
   }
 }

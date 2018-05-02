@@ -8,11 +8,11 @@ import { BaseController } from './base';
  */
 export class UserController extends BaseController {
   /**
-   * Create routes.
+   * Register routes.
    *
    * @override
    */
-  public create(): Router {
+  public register(): Router {
     const router = Router();
     this.index(router);
     this.show(router);

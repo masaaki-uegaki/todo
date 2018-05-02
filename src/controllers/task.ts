@@ -8,11 +8,11 @@ import { BaseController } from './base';
  */
 export class TaskController extends BaseController {
   /**
-   * Create routes.
+   * Register routes.
    *
    * @override
    */
-  public create(): Router {
+  public register(): Router {
     const router = Router();
     this.index(router);
     this.show(router);
@@ -72,7 +72,7 @@ export class TaskController extends BaseController {
     router.put('/:id', (req: Request, res: Response, next: NextFunction) => {
       try {
         const task: todo.model.Task = req.params;
-        res.send(`[UPDATED] Task:${task.id} | TODO`);
+        res.send(`[UPDATED] Task:${task.id} | TODO \n [UPDATED] Task:${task.name} | TODO`);
         next();
       } catch (err) {
         next(err);
