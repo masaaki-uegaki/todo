@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { BaseController } from '@/controllers/base';
+import { BaseController } from './base';
 
 /**
  * IndexController

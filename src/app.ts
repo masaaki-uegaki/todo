@@ -57,8 +57,8 @@ export class App {
   private setConfig(): void {
     this.app.use(awsServerlessExpressMiddleware.eventContext());
 
-    this.app.set('views', path.join(__dirname, 'views'));
-    this.app.set('view engine', 'jade');
+    // this.app.set('views', path.join(__dirname, 'views'));
+    // this.app.set('view engine', 'jade');
 
     this.app.use(logger('dev'));
 
@@ -75,7 +75,7 @@ export class App {
       }
     }));
 
-    this.app.use(express.static(path.join(__dirname, '../public')));
+    this.app.use(express.static(path.join(__dirname, '../client/dist')));
   }
 
   /**
