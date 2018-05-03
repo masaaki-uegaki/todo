@@ -1,4 +1,3 @@
 [submodule "client"]
 	path = client
 	url = git@github.com:masaaki-uegaki/todo-client
-	ignore = true
