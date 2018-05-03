@@ -9,6 +9,7 @@ import * as logger from 'morgan';
 import * as csrf from 'csurf';
 import * as cors from 'cors';
 import * as awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
+import * as history from 'connect-history-api-fallback';
 
 import { IndexController } from './controllers/index';
 import { UserController } from './controllers/user';
@@ -74,6 +75,8 @@ export class App {
         maxAge: 60 * 60 * 1000
       }
     }));
+
+    this.app.use(history());
 
     this.app.use(express.static(path.join(__dirname, '../client/dist')));
   }
