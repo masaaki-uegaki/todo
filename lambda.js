@@ -1,6 +1,6 @@
 'use strict'
 const awsServerlessExpress = require('aws-serverless-express');
-const application = require('dist/app');
+const application = require('./dist/app');
 const app = application.App.bootstrap().app;
 
 // NOTE: If you get ERR_CONTENT_DECODING_FAILED in your browser, this is likely

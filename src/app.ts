@@ -6,7 +6,7 @@ import * as session from 'express-session';
 import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
-import * as csrf from 'csurf';
+// import * as csrf from 'csurf';
 import * as cors from 'cors';
 import * as awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
 import * as history from 'connect-history-api-fallback';
@@ -56,8 +56,8 @@ export class App {
   private setConfig(): void {
     this.app.use(awsServerlessExpressMiddleware.eventContext());
 
-    this.app.set('views', path.join(__dirname, 'views'));
-    this.app.set('view engine', 'jade');
+    // this.app.set('views', path.join(__dirname, 'views'));
+    // this.app.set('view engine', 'jade');
 
     this.app.use(logger('dev'));
 
@@ -65,18 +65,16 @@ export class App {
     this.app.use(express.urlencoded({ extended: false }));
 
     this.app.use(cookieParser());
-    this.app.use(session({
-      secret: 'todo1A2B3C$!',
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        maxAge: 60 * 60 * 1000
-      }
-    }));
+    // this.app.use(session({
+    //   secret: 'todo1A2B3C$!',
+    //   resave: false,
+    //   saveUninitialized: false,
+    //   cookie: {
+    //     maxAge: 60 * 60 * 1000
+    //   }
+    // }));
 
-    // this.app.use(history());
-
-    this.app.use(express.static(path.join(__dirname, '../client/dist')));
+    this.app.use(cors());
   }
 
   /**
@@ -107,10 +105,8 @@ export class App {
    *
    */
   private setApiRoutes(): void {
-    this.app.use(cors());
-
-    this.app.use('/api/users', new UserController().register());
-    this.app.use('/api/tasks', new TaskController().register());
+    this.app.use('/api/v1/users', new UserController().register());
+    this.app.use('/api/v1/tasks', new TaskController().register());
   }
 
   /**
@@ -130,8 +126,7 @@ export class App {
       res.locals.error = req.app.get('env') === 'development' ? err : {};
 
       // Render the error page
-      res.status(err.status || 500);
-      res.render('error');
+      res.sendStatus(err.status || 500);
     });
   }
 }
