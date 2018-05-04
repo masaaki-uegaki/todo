@@ -76,7 +76,7 @@ export class App {
       }
     }));
 
-    this.app.use(history());
+    // this.app.use(history());
 
     this.app.use(express.static(path.join(__dirname, '../client/dist')));
   }

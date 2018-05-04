@@ -38,7 +38,11 @@ export class TaskController extends BaseController {
   private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.send(`Tasks | TODO`);
+        const task: todo.model.Task[] = [
+          { id: '1', name: 'Task1', createdAt: 'a', createdUid: '' },
+          { id: '2', name: 'Task2', createdAt: 'a', createdUid: '' },
+        ];
+        res.json(task);
         next();
       } catch (err) {
         next(err);
@@ -55,7 +59,7 @@ export class TaskController extends BaseController {
     router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
       try {
         const task: todo.model.Task = req.params;
-        res.send(`Task:${task.id} | TODO`);
+        res.json(task);
         next();
       } catch (err) {
         next(err);
@@ -72,7 +76,7 @@ export class TaskController extends BaseController {
     router.put('/:id', (req: Request, res: Response, next: NextFunction) => {
       try {
         const task: todo.model.Task = req.params;
-        res.send(`[UPDATED] Task:${task.id} | TODO \n [UPDATED] Task:${task.name} | TODO`);
+        res.json(task);
         next();
       } catch (err) {
         next(err);
@@ -89,7 +93,7 @@ export class TaskController extends BaseController {
     router.delete('/:id', (req: Request, res: Response, next: NextFunction) => {
       try {
         const task: todo.model.Task = req.params;
-        res.send(`[DELETED] Task:${task.id} | TODO`);
+        res.json(task);
         next();
       } catch (err) {
         next(err);
