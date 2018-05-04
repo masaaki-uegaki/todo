@@ -38,8 +38,11 @@ export class UserController extends BaseController {
   private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.send(`Users | TODO`);
-        next();
+        const users: app.model.User[] = [
+          { uid: '1', email: 'hoge1@example.jp' },
+          { uid: '2', email: 'hoge2@example.jp' },
+        ];
+        res.json(users);
       } catch (err) {
         next(err);
       }
@@ -55,8 +58,7 @@ export class UserController extends BaseController {
     router.get('/:uid', (req: Request, res: Response, next: NextFunction) => {
       try {
         const user: app.model.User = req.params;
-        res.send(`User:${user.uid} | TODO`);
-        next();
+        res.json(user);
       } catch (err) {
         next(err);
       }
@@ -72,8 +74,7 @@ export class UserController extends BaseController {
     router.put('/:uid', (req: Request, res: Response, next: NextFunction) => {
       try {
         const user: app.model.User = req.params;
-        res.send(`[UPDATED] User:${user.uid} | TODO`);
-        next();
+        res.json(user);
       } catch (err) {
         next(err);
       }
@@ -89,8 +90,7 @@ export class UserController extends BaseController {
     router.delete('/:uid', (req: Request, res: Response, next: NextFunction) => {
       try {
         const user: app.model.User = req.params;
-        res.send(`[DELETED] User:${user.uid} | TODO`);
-        next();
+        res.json(user);
       } catch (err) {
         next(err);
       }

@@ -11,7 +11,6 @@ import * as cors from 'cors';
 import * as awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
 import * as history from 'connect-history-api-fallback';
 
-import { IndexController } from './controllers/index';
 import { UserController } from './controllers/user';
 import { TaskController } from './controllers/task';
 
@@ -46,7 +45,6 @@ export class App {
     this.preRoutes();
     this.setApiRoutes();
     this.setRoutes();
-    this.postRoutes();
 
     this.setErrorHandler();
   }
@@ -58,8 +56,8 @@ export class App {
   private setConfig(): void {
     this.app.use(awsServerlessExpressMiddleware.eventContext());
 
-    // this.app.set('views', path.join(__dirname, 'views'));
-    // this.app.set('view engine', 'jade');
+    this.app.set('views', path.join(__dirname, 'views'));
+    this.app.set('view engine', 'jade');
 
     this.app.use(logger('dev'));
 
@@ -97,35 +95,11 @@ export class App {
   }
 
   /**
-   * Post process of routing.
-   *
-   */
-  private postRoutes(): void {
-    this.app.all('/*', (req: Request, res: Response, next: NextFunction) => {
-      try {
-        console.log(`Post:url=${req.url}&sessionID=${req.sessionID}&params=${JSON.stringify(req.params)}`);
-      } catch (err) {
-        next(err);
-      }
-    });
-  }
-
-  /**
    * Set routes.
    *
    */
   private setRoutes(): void {
-    this.app.use(csrf({ cookie: true }));
-
-    this.app.use('/', new IndexController().register());
-    this.app.use('/home', (req: Request, res: Response, next: NextFunction) => {
-      try {
-        res.redirect('/');
-        next();
-      } catch (err) {
-        next(err);
-      }
-    });
+    // this.app.use(csrf({ cookie: true }));
   }
 
   /**

@@ -38,12 +38,11 @@ export class TaskController extends BaseController {
   private index(router: Router): void {
     router.get('/', (req: Request, res: Response, next: NextFunction) => {
       try {
-        const task: todo.model.Task[] = [
+        const tasks: todo.model.Task[] = [
           { id: '1', name: 'Task1', createdAt: 'a', createdUid: '' },
           { id: '2', name: 'Task2', createdAt: 'a', createdUid: '' },
         ];
-        res.json(task);
-        next();
+        res.json(tasks);
       } catch (err) {
         next(err);
       }
@@ -60,7 +59,6 @@ export class TaskController extends BaseController {
       try {
         const task: todo.model.Task = req.params;
         res.json(task);
-        next();
       } catch (err) {
         next(err);
       }
@@ -77,7 +75,6 @@ export class TaskController extends BaseController {
       try {
         const task: todo.model.Task = req.params;
         res.json(task);
-        next();
       } catch (err) {
         next(err);
       }
@@ -94,7 +91,6 @@ export class TaskController extends BaseController {
       try {
         const task: todo.model.Task = req.params;
         res.json(task);
-        next();
       } catch (err) {
         next(err);
       }
